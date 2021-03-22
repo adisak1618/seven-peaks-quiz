@@ -10,6 +10,7 @@ import { GuardianSearch } from '../lib/GuardianJSClient'
 import { RichCard } from '../components/articleCard'
 import { Row, Column } from '../components/flex'
 import Header from '../components/pages/home/header'
+import Head from 'next/head'
 
 interface searchPagePropsType {
   searchData: any
@@ -27,6 +28,9 @@ const SearchPage = ({ searchData }: searchPagePropsType) => {
   const router = useRouter()
   return (
     <MainLayout>
+      <Head>
+        <title>The Peaks - Search</title>
+      </Head>
       <Container>
         <Header
           title="Search result"

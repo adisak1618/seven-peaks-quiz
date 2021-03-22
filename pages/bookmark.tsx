@@ -10,6 +10,7 @@ import Link from 'next/link'
 import Dropdown from '../components/dropdown'
 import { getJsonArray } from '../lib/bookmark'
 import { GetServerSidePropsContext } from 'next'
+import Head from 'next/head'
 
 const Wrapper = styled.div`
   margin-top: 35px;
@@ -59,6 +60,9 @@ const BookMarkPages = ({ sortQuery }: { sortQuery: string | null }) => {
   }, [])
   return (
     <Layout>
+      <Head>
+        <title>The Peaks - bookmark</title>
+      </Head>
       <Container>
         <Wrapper>
           <Row>

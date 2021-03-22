@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { NextPage, GetServerSidePropsContext } from 'next'
 import styled from 'styled-components'
-import querystring from 'querystring'
+import Head from 'next/head'
 import { Row, Column } from '../components/flex'
 import { GuardianSearch, GuardianSection } from '../lib/GuardianJSClient'
 import { RichCard } from '../components/articleCard'
@@ -32,6 +32,9 @@ const Home: NextPage<HomeProps> = (props) => {
   const router = useRouter()
   return (
     <MainLayout>
+      <Head>
+        <title>The Peaks - Home</title>
+      </Head>
       <Container>
         <Header
           title="Top stories"

@@ -9,6 +9,7 @@ import BookmarkButton from '../../components/bookmarkButton'
 import { P, H2, H4, Article } from '../../components/typography'
 import { Column, Row } from '../../components/flex'
 import { JSONparse, getJsonArray } from '../../lib/bookmark'
+import Head from 'next/head'
 
 const ArticleSection = styled.section`
   margin-top: 20px;
@@ -90,6 +91,9 @@ const ArticlePage = ({ articleData }: ArticlePropsType) => {
 
   return (
     <Layout>
+      <Head>
+        <title>The Peaks - {content.webTitle}</title>
+      </Head>
       <Container>
         <ArticleSection>
           <div className="header">
