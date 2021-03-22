@@ -15,6 +15,7 @@ const Wrapper = styled.div`
     margin: 0 10px;
     outline:0px;
     outline-color: none;
+    background: transparent;
     &:focus {
       border-color: #2a6dc9 !important;
     }

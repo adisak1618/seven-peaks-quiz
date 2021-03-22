@@ -5,13 +5,23 @@ import Layout from '../components/layout/main'
 import Container from '../components/container'
 import { RichCard } from '../components/articleCard'
 import { Row, Column } from '../components/flex'
-import { H1 } from '../components/typography'
+import { H1, H3, P } from '../components/typography'
+import Link from 'next/link'
 import Dropdown from '../components/dropdown'
 import { getJsonArray } from '../lib/bookmark'
 import { GetServerSidePropsContext } from 'next'
 
 const Wrapper = styled.div`
   margin-top: 35px;
+  a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+  }
+  .no-bookmark {
+    padding: 100px 10px;
+    font-size: 2em;
+    color: #ccc;
+  }
   .dropdown {
     display: flex;
     justify-content: flex-end;
@@ -80,18 +90,27 @@ const BookMarkPages = ({ sortQuery }: { sortQuery: string | null }) => {
                   return sort === 'newest' ? bNum - aNum : aNum - bNum;
                 })
                 .map(v => (
-                  <Column colXs={4} padding="15px">
-                    <RichCard
-                      data={{
-                        headline: v.title,
-                        thumbnail: v.thumbnail
-                      }}
-                      height="350px"
-                    />
+                  <Column key={v.title} colXs={12} colMd={6} col={4} padding="15px">
+                    <Link href={`/article/${v.id}`}>
+                      <a>
+                        <RichCard
+                          data={{
+                            headline: v.title,
+                            thumbnail: v.thumbnail
+                          }}
+                          height="350px"
+                        />
+                      </a>
+                    </Link>
                   </Column>
                 ))
             }
           </Row>
+          {bookmarkList.length === 0 && (
+            <Row className="no-bookmark" justify="center">
+              <P>No bookmark found</P>
+            </Row>
+          )}
         </Wrapper>
       </Container>
     </Layout>
