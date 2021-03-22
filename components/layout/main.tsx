@@ -4,6 +4,7 @@ import Header from '../head/index'
 
 const Wrapper = styled.div`
   #loadingSVG {
+    z-index: 100;
     background: #FFF;
     width: 100%;
     height: 100%;
