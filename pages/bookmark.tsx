@@ -47,14 +47,13 @@ const BookMarkPages = ({ sortQuery }: { sortQuery: string | null }) => {
   const router = useRouter()
   const [bookmarkList, setBookmarkList] = useState<Array<any>>([])
   const [sort, setSort] = useState('newest')
-  console.log('bookmark', sortQuery)
   useEffect(() => {
     const bookmark = getJsonArray()
     if (bookmark && bookmark instanceof Array) {
       setBookmarkList(bookmark)
     }
 
-    if (router.query.sort !== undefined || router.query.sort !== '') {
+    if (router.query.sort != undefined && router.query.sort != '') {
       setSort(router.query.sort as string)
     }
   }, [])
