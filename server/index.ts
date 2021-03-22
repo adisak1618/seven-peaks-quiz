@@ -1,3 +1,4 @@
+require('dotenv').config()
 import express from "express";
 import routes from './routes/index'
 import nextApp from './nextApp'
