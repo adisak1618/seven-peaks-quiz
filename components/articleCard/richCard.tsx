@@ -28,12 +28,21 @@ const labelColorPicker = (color?: labelColorType) => {
 
 const Wrapper = styled(Row) <WrapperProps & RowProps>`
   height: ${p => p.height};
-  ${p => (p.bgUrl === undefined || p.bgUrl === "") ? `background: url('/assets/Logo-white.png') ${colour.Blue} no-repeat` : `background: url(${p.bgUrl}) no-repeat`};
+  background: ${colour.Blue};
+  ${p => (p.bgUrl) ? `background: url(${p.bgUrl}) no-repeat` : ''};
   background-size: ${p => p.bgUrl === undefined ? '' : 'cover'};
   background-position: ${p => p.bgUrl === undefined ? 'center 80px' : 'center'};
   border-bottom: 3px solid ${p => labelColorPicker(p.color)};
   box-sizing: border-box;
   cursor: pointer;
+  position: relative;
+  .thepeaksthumnail {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('/assets/Logo-white.png') ${colour.Blue} no-repeat;
+    background-position: center 30%;
+  }
 `
 
 type TitleFontSizeType = '26px' | '24px' | '20px' | '18px' | '16px'
@@ -43,6 +52,7 @@ interface HeadlineType {
 }
 
 const Headline = styled(Column) <HeadlineType>`
+  z-index: 99;
   background: ${colour.MainLight};
   padding: 10px;
   width: 100%;
@@ -89,6 +99,9 @@ const RichCard = ({ data, height = '420px', color, showDescription = true, showT
         <h3 className="title">{data.headline}</h3>
         {showDescription && data.descriotion && <div className="sort-descriotion" dangerouslySetInnerHTML={{ __html: data.descriotion }} />}
       </Headline>
+      {(!data.thumbnail && showThumbnail === true) && (
+        <div className="thepeaksthumnail" />
+      )}
     </Wrapper>
   )
 }
