@@ -84,10 +84,10 @@ interface RichCardType extends HeadlineType {
 
 const RichCard = ({ data, height = '420px', color, showDescription = true, showThumbnail = true, titleFontSize, lineClamp = 3 }: RichCardType) => {
   return (
-    <Wrapper as="article" color={color} alignItem={showThumbnail ? "flex-end" : "stretch"} height={height} bgUrl={showThumbnail ? data.thumbnail : ""}>
+    <Wrapper as="article" color={color} alignItem={showThumbnail ? "flex-end" : "stretch"} height={height} bgUrl={(showThumbnail && data.thumbnail) ? data.thumbnail : ""}>
       <Headline titleFontSize={titleFontSize} lineClamp={lineClamp}>
         <h3 className="title">{data.headline}</h3>
-        {showDescription && <div className="sort-descriotion" dangerouslySetInnerHTML={{ __html: data.descriotion }} />}
+        {showDescription && data.descriotion && <div className="sort-descriotion" dangerouslySetInnerHTML={{ __html: data.descriotion }} />}
       </Headline>
     </Wrapper>
   )
